@@ -1,5 +1,17 @@
-﻿$rawContent = Invoke-WebRequest -Uri 'https://www.reddit.com/r/All.json'
-$content = $rawContent.Content
+﻿$rawContent = Invoke-RestMethod -Uri 'https://www.bleepingcomputer.com/feed/'
+$content = $rawContent | Select-Object -First 5
+$content
+
+$rawContent = Invoke-RestMethod -Uri 'https://krebsonsecurity.com/feed/'
+$content = $rawContent | Select-Object -First 5
+$content
+
+$rawContent = Invoke-RestMethod -Uri 'https://isc.sans.edu/dailypodcast.xml'
+$content = $rawContent | Select-Object -First 5
+$content
+
+$rawContent = Invoke-WebRequest -Uri 'https://www.reddit.com/r/InfoSecNews.json'
+[string]$content = $rawContent.Content
 $convertedContent = $content | ConvertFrom-Json
 $posts = $convertedContent.data.children.data
 $posts = $posts | Select-Object title,ups,url | Sort-Object ups -Descending | Select-Object -First 5
@@ -23,14 +35,3 @@ Write-Host $current, $url, $ups
 $iterate = $iterate + 1
 }
 
-$rawContent = Invoke-RestMethod -Uri 'https://www.bleepingcomputer.com/feed/'
-$content = $rawContent | Select-Object -First 5
-$content
-
-$rawContent = Invoke-RestMethod -Uri 'https://krebsonsecurity.com/feed/'
-$content = $rawContent | Select-Object -First 5
-$content
-
-$rawContent = Invoke-RestMethod -Uri 'https://isc.sans.edu/dailypodcast.xml'
-$content = $rawContent | Select-Object -First 5
-$content
