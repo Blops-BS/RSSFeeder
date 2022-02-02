@@ -5,7 +5,7 @@ $posts = $convertedContent.data.children.data
 $posts = $posts | Select-Object title,ups,url | Sort-Object ups -Descending | Select-Object -First 5
 $iterate = 0
 foreach ($item in $posts){
-$current = $posts | Select-Object title |Sort-Object ups -Descending | Select-Object -Skip $iterate | Select-Object -First 1
+[string]$current = $posts | Select-Object title |Sort-Object ups -Descending | Select-Object -Skip $iterate | Select-Object -First 1
 $current = $current.TrimStart('@{title=')
 $current = $current.TrimEnd('}')
 $length = $current.Length
