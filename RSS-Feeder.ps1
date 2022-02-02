@@ -25,9 +25,11 @@ $iterate = $iterate + 1
 
 $rawContent = Invoke-RestMethod -Uri 'https://www.bleepingcomputer.com/feed/'
 $content = $rawContent | Select-Object -First 5
+$content
 
 $rawContent = Invoke-RestMethod -Uri 'https://krebsonsecurity.com/feed/'
 $content = $rawContent | Select-Object -First 5
+$content
 
 $rawContent = Invoke-RestMethod -Uri 'https://isc.sans.edu/dailypodcast.xml'
 $content = $rawContent | Select-Object -First 5
